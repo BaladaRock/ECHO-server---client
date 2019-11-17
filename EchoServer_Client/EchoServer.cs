@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Server
+namespace EchoServer
 {
-    internal class Server
+    internal class EchoServer
     {
         internal static void Main(string[] args)
         {
