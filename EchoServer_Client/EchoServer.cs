@@ -20,16 +20,18 @@ namespace EchoServer
         {
             const byte maxValue = byte.MaxValue;
 
-            var EchoServer = new EchoServer(Dns.GetHostEntry("localHost").AddressList[0]);
-            TcpListener server = EchoServer.Server;
+            var echoServer = new EchoServer(Dns.GetHostEntry("localHost").AddressList[0]);
+            TcpListener server = echoServer.Server;
             server.Start();
 
             while (true)
             {
+                TcpClient client = server.AcceptTcpClient();
                 byte[] buffer = new byte[maxValue];
-                NetworkStream dataStream = server.AcceptTcpClient().GetStream();
+                NetworkStream dataStream = client.GetStream();
 
                 dataStream.Read(buffer, 0, maxValue);
+                client.Client.Send(buffer);
 
                 Console.WriteLine(Encoding.ASCII.GetString(buffer, 0, maxValue));
             }
