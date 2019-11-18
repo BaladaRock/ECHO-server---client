@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
@@ -27,7 +26,7 @@ namespace Client
 
             byte[] bytesToRead = new byte[client.ReceiveBufferSize];
             int bytesRead = stream.Read(bytesToRead, 0, client.ReceiveBufferSize);
-            Console.WriteLine("Received : " + Encoding.ASCII.GetString(bytesToRead, 0, bytesRead));
+            Console.WriteLine("Received from server: " + Encoding.ASCII.GetString(bytesToRead, 0, bytesRead));
 
             stream.Close();
             client.Close();
