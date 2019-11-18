@@ -22,7 +22,6 @@ namespace EchoServer
 
             var EchoServer = new EchoServer(Dns.GetHostEntry("localHost").AddressList[0]);
             TcpListener server = EchoServer.Server;
-            TcpClient client = EchoServer.Client;
             server.Start();
 
             while (true)
@@ -33,7 +32,6 @@ namespace EchoServer
                 dataStream.Read(buffer, 0, maxValue);
 
                 Console.WriteLine(Encoding.ASCII.GetString(buffer, 0, maxValue));
-                Console.ReadKey();
             }
         }
     }
